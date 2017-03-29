@@ -1,0 +1,58 @@
+<!--
+	Korisnik aplikacije unosi zadatke koje treba da obavi, ispod forme za unos se ispisuju ti zadaci.
+	Korisnik ce imati mogucnost da izbrise uradjene zadatke, klikom na X zadatak se iz liste brise.
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TO-DO LIST</title>
+		<meta name="author" content="Luka Ilic, Djordje Pucar, Nebojsa Nikolic">
+		<style type="text/css">
+			#sve {
+				margin-left: 35%;
+			}
+			#naslov {
+				font-size: 19px;
+				font-weight: bold;
+				color: red;
+			}
+			button {
+	    		background-color: #14b114;
+	    		color: white;
+			}
+			.brisanje {
+				color: red;
+			}
+			#opis {
+				margin-left: 20%;
+				margin-top: 15%;
+				font-size: 14px;
+			}
+			mark {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="sve">
+			<div id="unos">
+				<p id="naslov">TO-DO LIST</p>
+				<form method="post">
+					<input type="text" name="unos" placeholder="Unos:">
+					<button>Posalji</button>
+				</form>
+			</div>
+			<div id="prikaz"><!--PRIKAZ ZADATAKA-->
+				<ol>
+					<li>OBAVEZA 1 <span class="brisanje">X</span></li><!--Brisanje moze da bude i preko checkboxa-->
+					<li>OBAVEZA 2 <span class="brisanje">X</span></li>
+					<li>OBAVEZA 3 <span class="brisanje">X</span></li>
+				</ol>
+			</div>
+		</div>
+	<pre id="opis">
+		*Korisnik aplikacije unosi zadatke koje treba da obavi, ispod forme za unos se ispisuju ti zadaci.
+		Korisnik ce imati mogucnost da izbrise uradjene zadatke, klikom na <mark>X</mark> zadatak se iz liste brise.</pre>
+	</body>
+</html>
