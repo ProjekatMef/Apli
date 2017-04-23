@@ -1,36 +1,27 @@
-<!--
-	Korisnik aplikacije unosi zadatke koje treba da obavi, ispod forme za unos se ispisuju ti zadaci.
-	Korisnik ce imati mogucnost da izbrise uradjene zadatke, klikom na X zadatak se iz liste brise.
--->
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>TO-DO LIST</title>
 		<meta name="author" content="Luka Ilic, Djordje Pucar, Nebojsa Nikolic">
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  		<script src="app.js"></script>
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
 		<div id="sve">
 			<div id="unos">
 				<p id="naslov">TO-DO LIST</p>
-				<form method="post">
-					<input type="text" name="username" placeholder="Korisnicko ime:">
+				<form>
+					<input type="text" id="korisnicko-ime" placeholder="Korisnicko ime:">
 					<br>
-					<input type="text" name="unos" placeholder="Unos:"><br>
-					<button>Posalji</button>
+					<input type="text" id="zadatak" placeholder="Unos:"><br>
+					<button id="posalji">Posalji</button>
 				</form>
 			</div>
-			<div id="prikaz"><!--PRIKAZ ZADATAKA-->
-				<ol>
-					<li>OBAVEZA 1 <span class="brisanje">X</span></li><!--Brisanje moze da bude i preko checkboxa-->
-					<li>OBAVEZA 2 <span class="brisanje">X</span></li>
-					<li>OBAVEZA 3 <span class="brisanje">X</span></li>
-				</ol>
+			<div id="prikaz">
+				<p id="zadatak-prikazi"></p>
 			</div>
 		</div>
-	<pre id="opis">
-		*Korisnik aplikacije unosi zadatke koje treba da obavi, ispod forme za unos se ispisuju ti zadaci.
-		Korisnik ce imati mogucnost da izbrise uradjene zadatke, klikom na <mark>X</mark> zadatak se iz liste brise.</pre>
 	</body>
 </html>
