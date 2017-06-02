@@ -6,7 +6,7 @@ var zadaci = [];
 
 fs.readFile("korisnici.dat", function read(err, data) {
 	if(err) {
-		korisnici = [{ime : "admin", zadatak : "Sastanak"}];
+		korisnici = [];
 	}
 	else {
 		korisnici = JSON.parse(data);
@@ -37,9 +37,20 @@ function greskaURL(response) {
 	response.end();
 }
 
-function zadatak(zadatak) {
+function zadatak_(zadatak) {
 	zadaci.push(zadatak);
 	fs.writeFile("zadaci.dat", JSON.stringify(zadaci), function(err) {
+		if(err) {
+			console.log(err);
+		}
+	});
+
+	return JSON.stringify(zadaci);
+}
+
+function korisnik_(korisnik) {
+	korisnici.push(korisnik);
+	fs.writeFile("korisnici.dat", JSON.stringify(korisnici), function(err) {
 		if(err) {
 			console.log(err);
 		}
@@ -61,14 +72,38 @@ function odgovorServera(request, response) {
 			response.end(appjs);
 			break;
 		case "/novi-zadatak":
+			var ime = "";
 			var zadatak = "";
 			request.on("data", function(data) {
 				zadatak += data;
 			});
 			request.on("end", function() {
 				zadatak = JSON.parse(zadatak);
-				response.end(zadatak(zadatak));
+				//console.log(zadatak);
+				ime = zadatak.ime;
+				zadatak_(zadatak);
+				var odgovor = [];
+
+				for(var i = 0; i<zadaci.length; i++) {
+					//console.log("///"+zadaci[i].ime+"///"+ime);
+					if(zadaci[i].ime == ime) {
+						odgovor.push({"zadatak" : zadaci[i].zadatak});
+					}
+				}
+				response.end(JSON.stringify(odgovor));
 			});
+			//console.log(zadaci)
+			break;
+		case "/korisnik":
+			var korisnik = "";
+			request.on("data", function(data) {
+				korisnik += data;
+			});
+			request.on("end", function() {
+				korisnik = JSON.parse(korisnik);
+				response.end(korisnik_(korisnik));
+			});
+			//console.log(korisnici);
 			break;
 		default:
 			greskaURL(response);
