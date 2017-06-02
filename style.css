@@ -1,20 +1,20 @@
 #naslov {
-	font-size: 19px;
-	font-weight: bold;
-	color: red;
+    font-size: 19px;
+    font-weight: bold;
+    color: red;
 }
 button {
-	background-color: #14b114;
-	color: white;
+    background-color: #14b114;
+    color: white;
 }
 .brisanje {
-	color: red;
+    color: red;
 }
 #opis {
-	margin-left: 20%;
-	margin-top: 15%;
-	font-size: 14px;
+    margin-left: 20%;
+    margin-top: 15%;
+    font-size: 14px;
 }
 mark {
-	color: red;
+    color: red;
 }
