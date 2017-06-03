@@ -22,4 +22,5 @@ button {
 .dugme-code {
     font-size: xx-large;
     color: blue;
+    cursor: pointer;
 }

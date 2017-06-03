@@ -74,23 +74,18 @@ function odgovorServera(request, response) {
             });
             break;
         case "/brisanje":
-            //PROBLEM
-            var brisanje = "";
-            request.on("data", function(data) {
-                brisanje += data;
-            });
-            request.on("end", function() {
-                brisanje = JSON.parse(brisanje);
-                for(var i = 0; i<zadaci.length; i++) {
-                    if(zadaci[i].ime === brisanje.ime) {
-                        console.log(zadaci[i].zadatak);
-                    }
-                    else {
-                        console.log(false);
-                    }
-                }
-            });
-            ///KARAJ PROBLEMA
+            var brisanje = ""; 
+            request.on("data", function(data) { 
+                brisanje += data; 
+            }); 
+            request.on("end", function() { 
+                brisanje = JSON.parse(brisanje); 
+                for(var i = 0; i<zadaci.length; i++) { 
+                    if(zadaci[i].ime === brisanje.ime && zadaci[i].zadatak == brisanje.zadatak) {
+                        console.log(zadaci[i])
+                    } 
+                } 
+            }); 
             break;
         default:
             greskaURL(response);

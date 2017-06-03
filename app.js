@@ -48,6 +48,8 @@ function Brisanje(odgovor) {
 }
 
 function brisiZadatak(sta) {
+	//var a = document.querySelector("#hidden");
+    //a.style.display = "none";
     var korisnicko_ime = document.querySelector("#korisnicko-ime").value;
     zadatak = sta.nextElementSibling.innerHTML;
     //alert(zadatak);
@@ -60,25 +62,18 @@ function brisiZadatak(sta) {
     };
     options.zadatak = JSON.stringify(brisi);
     AjaxZahtev(options, Brisanje);
-    //var a = document.querySelector("#hidden");
-    //a.style.visibility = "hidden";
 }
 
 function odgovorServeraP(odgovor) {
-    var id = 1;
     zadaci = JSON.parse(odgovor);
     var prikazi = document.querySelector("#zadatak-prikazi");
     for(var i = 0; i<zadaci.length; i++) {
-        //prikazi.innerHTML += "<p><span class='dugme-code' onclick='izbrisi(this)'>&#128465;</span>"+zadaci[i].zadatak+"</p>";
-        //prikazi.innerHTML += "<p id='"+id+"'><a href='javascript:izbrisi("+id+")'>X </a>"+zadaci[i].zadatak+"</p>";
-        //id++;
         if(zadaci[i].zadatak != "" && zadaci[i].zadatak != undefined) {
             prikazi.innerHTML += "<p id='hidden'><span class='dugme-code' onclick='brisiZadatak(this)'>&#128465;</span><span>"+zadaci[i].zadatak+"</span></p>";
         }
     }
 }
     
-
 function validnostPodataka(korisnicko_ime) {
     if(korisnicko_ime == "") {
         return false;
