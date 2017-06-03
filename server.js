@@ -1,17 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 
-var korisnici = [];
 var zadaci = [];
-
-fs.readFile("korisnici.dat", function read(err, data) {
-    if(err) {
-        korisnici = [];
-    }
-    else {
-        korisnici = JSON.parse(data);
-    }
-});
 
 fs.readFile("zadaci.dat", function read(err, data) {
     if(err) {
@@ -33,7 +23,7 @@ function prikaziInterfejs(response) {
 
 function greskaURL(response) {
     response.writeHead(200, {"Content-Type": "text/html"});
-    response.write("<h1>Stranica1 nije pronadjena..");
+    response.write("<h1>Stranica1 nije pronadjena..</h1>");
     response.end();
 }
 
@@ -46,15 +36,6 @@ function zadatak_(zadatak) {
     });
 
     return JSON.stringify(zadaci);
-}
-
-function korisnik_(korisnik) {
-    korisnici.push(korisnik);
-    fs.writeFile("korisnici.dat", JSON.stringify(korisnici), function(err) {
-        if(err) {
-            console.log(err);
-        }
-    });
 }
 
 function odgovorServera(request, response) {
@@ -85,25 +66,31 @@ function odgovorServera(request, response) {
                 var odgovor = [];
 
                 for(var i = 0; i<zadaci.length; i++) {
-                    //console.log("///"+zadaci[i].ime+"///"+ime);
                     if(zadaci[i].ime == ime) {
                         odgovor.push({"zadatak" : zadaci[i].zadatak});
                     }
                 }
                 response.end(JSON.stringify(odgovor));
             });
-            //console.log(zadaci)
             break;
-        case "/korisnik":
-            var korisnik = "";
+        case "/brisanje":
+            //PROBLEM
+            var brisanje = "";
             request.on("data", function(data) {
-                korisnik += data;
+                brisanje += data;
             });
             request.on("end", function() {
-                korisnik = JSON.parse(korisnik);
-                response.end(korisnik_(korisnik));
+                brisanje = JSON.parse(brisanje);
+                for(var i = 0; i<zadaci.length; i++) {
+                    if(zadaci[i].ime === brisanje.ime) {
+                        console.log(zadaci[i].zadatak);
+                    }
+                    else {
+                        console.log(false);
+                    }
+                }
             });
-            //console.log(korisnici);
+            ///KARAJ PROBLEMA
             break;
         default:
             greskaURL(response);
