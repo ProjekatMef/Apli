@@ -48,8 +48,9 @@ function Brisanje(odgovor) {
 }
 
 function brisiZadatak(sta) {
-	//var a = document.querySelector("#hidden");
-    //a.style.display = "none";
+	//var a = document.querySelector("#"+sta);
+    sta.style.display = "none";
+    sta.nextElementSibling.style.display = "none";
     var korisnicko_ime = document.querySelector("#korisnicko-ime").value;
     zadatak = sta.nextElementSibling.innerHTML;
     //alert(zadatak);
@@ -69,7 +70,7 @@ function odgovorServeraP(odgovor) {
     var prikazi = document.querySelector("#zadatak-prikazi");
     for(var i = 0; i<zadaci.length; i++) {
         if(zadaci[i].zadatak != "" && zadaci[i].zadatak != undefined) {
-            prikazi.innerHTML += "<p id='hidden'><span class='dugme-code' onclick='brisiZadatak(this)'>&#128465;</span><span>"+zadaci[i].zadatak+"</span></p>";
+            prikazi.innerHTML += "<p><span class='dugme-code' onclick='brisiZadatak(this)'>&#128465;</span><span>"+zadaci[i].zadatak+"</span></p>";
         }
     }
 }

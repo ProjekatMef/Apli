@@ -82,7 +82,7 @@ function odgovorServera(request, response) {
                 brisanje = JSON.parse(brisanje); 
                 for(var i = 0; i<zadaci.length; i++) { 
                     if(zadaci[i].ime === brisanje.ime && zadaci[i].zadatak == brisanje.zadatak) {
-                        console.log(zadaci[i])
+                        delete zadaci[i].zadatak;
                     } 
                 } 
             }); 
